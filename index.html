@@ -10,6 +10,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="asset/css/main.css">
 
+	<script>
+		sessionStorage.getItem("isLogged") ? window.location.href = "admin.html" : null;
+	</script>
+
 	<script src="asset/js/jquery.min.js"></script>
 	<script src="asset/js/popper.min.js"></script>
 	<script src="asset/js/bootstrap.min.js"></script>
@@ -20,14 +24,14 @@
 		<section class="common-sec login-page-sec">
 			<div class="container">
 				<div class="logo-dv text-center">
-					<a class="navbar-brand" href="index.php">
+					<a class="navbar-brand" href="index.html">
 						<span class="site-logo"><img src="asset/img/logo.svg" alt="Logo"></span>
 					</a>
 				</div>
 
 				<div class="login-form-dv">
 					<section class="custom-form-sec">
-						<form class="icon-form" action="" method="post">
+						<form class="icon-form" id="loginForm">
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-bx">
@@ -48,7 +52,7 @@
 
 							</div><!-- row -->
 
-							<div class="submit mt-4">
+							<div class="submit mt-4" >
 								<button type="submit" class="custom-btn round-btn">Login</button>
 							</div>
 						</form>

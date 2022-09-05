@@ -10,6 +10,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="asset/css/main.css">
 
+	<script>
+		!sessionStorage.getItem("isLogged") ? window.location.href = "index.html" : null;
+	</script>
+
 	<script src="asset/js/jquery.min.js"></script>
 	<script src="asset/js/popper.min.js"></script>
 	<script src="asset/js/bootstrap.min.js"></script>
@@ -41,12 +45,12 @@
 					
 					<ul class="navbar-nav">
 						<li>
-							<a href="#">
+							<a href="index.html">
 								<span class="txt">Home</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="analysis.html">
 								<span class="icon">
 									<img src="asset/img/report.png" alt="Report" class="iconBlack"/>
 									<img src="asset/img/report-white.png" alt="Report" class="iconBlue"/>
@@ -64,7 +68,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" id="logout">
 								<span class="icon"><img src="asset/img/logout.png" alt="LogOut"></span>
 							</a>
 						</li>
@@ -374,6 +378,8 @@
 			</section><!-- common-sec -->
 		</main>
 	</section><!-- wrapper -->
+
+	<script src="asset/js/custom.js"></script>
 
 </body>
 </html>
