@@ -77,19 +77,19 @@ $('#userList').ready(function(){
 				<th>History</th>
 				<th></th>
 			</tr>` + res.map((el)=>{
-				return `
+				return el[5]!="YES" ? `
 					<tr>
-						<td>${el[3]}</td>
+						<td>${el[1]}</td>
 						<td>${el[2]}</td>
-						<td>10 days</td>
+						<td>${el[3]}</td>
 						<td>
-							<button class="tb-btn delete">
+							<button onClick="delUser(${el[0]})" class="tb-btn delete">
 								<span class="icon">
 									<img src="asset/img/Icon-feather-trash.png" alt="Trash"/>
 								</span>
 							</button>
 						</td>
-					</tr>`
+					</tr>` : ""
 			}).join("")
 		},
 		error: function (err) {
@@ -98,3 +98,75 @@ $('#userList').ready(function(){
 		}
 	});
 })
+
+$('#addUserForm').submit(function (e) {
+	e.preventDefault();
+
+	const data = {
+		action: "addUser",
+		email: $('#addEmail').val(),
+		password: $('#addPassword').val(),
+		history: $('#addHistory').val(),
+		ips: $('#addIps').val(),
+	}
+
+	if (!data.email || !data.password || !data.history) {
+		$('.msg-error').show();
+		return;
+	}
+
+	$.ajax({
+		url: 'https://script.google.com/macros/s/AKfycbw4QmCx7RMJtvy2RbLt1Hp1Omj7PbtCRBAJpONOTMr6zW3qLHfUIy5oi92BHM77RQI/exec',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		crossDomain: true,
+		type: "POST",
+		dataType: "json",
+		data: data,
+		success: function (res) {
+			console.log(res)
+			if (res.status == "done") {
+				
+				window.location.reload()
+			} else {
+				$('.msg-error').show();
+			}
+		},
+		error: function (err) {
+			$('.msg-error').show();
+			console.log(err);
+		}
+	});
+})
+
+function delUser(delID){
+	const data = {
+		action: "delUser",
+		delID: delID,
+	}
+
+	$.ajax({
+		url: 'https://script.google.com/macros/s/AKfycbw4QmCx7RMJtvy2RbLt1Hp1Omj7PbtCRBAJpONOTMr6zW3qLHfUIy5oi92BHM77RQI/exec',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		crossDomain: true,
+		type: "POST",
+		dataType: "json",
+		data: data,
+		success: function (res) {
+			console.log(res)
+			if (res.status == "done") {
+				
+				window.location.reload()
+			} else {
+				$('.msg-error').show();
+			}
+		},
+		error: function (err) {
+			$('.msg-error').show();
+			console.log(err);
+		}
+	});
+}
